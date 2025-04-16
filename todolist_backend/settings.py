@@ -25,7 +25,10 @@ SECRET_KEY = 'django-insecure-ajgcbb2@-@nks7s00g@cc^toaiarbgb73k^^)=#w64dsq6=ggr
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["pit3-todolist-backend.onrender.com"]
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "localhost",
+    "pit3-todolist-backend.onrender.com"]
 
 
 # Application definition
@@ -38,9 +41,18 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
     'todo',
     'corsheaders',
 ]
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+}
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -53,10 +65,11 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
 ]
 
-CORS_ALLOWED_ORIGINS = [
-    "https://joeiradionela.github.io/pit3_todolist_frontend/",  
-    "https://joeiradionela.github.io/",
-]
+# CORS_ALLOWED_ORIGINS = [
+#     "https://joeiradionela.github.io/pit3_todolist_frontend/",  
+#     "https://joeiradionela.github.io/",
+# ]
+
 ROOT_URLCONF = 'todolist_backend.urls'
 
 TEMPLATES = [
